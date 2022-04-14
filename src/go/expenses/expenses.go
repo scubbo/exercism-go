@@ -51,6 +51,21 @@ func TotalByPeriod(in []Record, p DaysPeriod) (total float64) {
 		// There must be `Filter` and `Fold` methods to apply to a slice for this,
 		// but I'm intentionally not using them because we haven't been introduced
 		// to them yet
+		//
+		// Update: whoops, we'd implemented `Filter` above. Still surprising that,
+		// from a little searching, it doesn't appear to be part of
+		// the standard library, though (ref: https://stackoverflow.com/q/37562873/1040915)
+		//
+		// Keeping my original code for the record, but it would have been more appropriate
+		// to do
+		//  ```
+		//   for _, r := range (Filter(in, ByDaysPeriod(p)) {
+		//     total += r.Amount
+		//   }
+		//   return
+		//  ```
+		//
+		// (And similar below)
 		if ByDaysPeriod(p)(r) {
 			total += r.Amount
 		}
