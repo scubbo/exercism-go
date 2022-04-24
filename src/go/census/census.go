@@ -20,6 +20,8 @@ func (r *Resident) HasRequiredInfo() bool {
 	// Ideally, I'd create a method named `IsZeroValue` that uses generics
 	// (https://go.dev/doc/tutorial/generics) to check if a value of any
 	// type has the zero value - but generics were only introduced in v1.18 :(
+    //
+    // UDPATE: Looks like this can sort-of be done with Type Switches!
 	return r.Name != "" && r.Address["street"] != ""
 }
 
